@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1242249737133124781, guid: 69baba204fe69e648837341520b04e96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1609400182018881243}
   - component: {fileID: 2591989655211393455}
+  - component: {fileID: 5742248296320008745}
   m_Layer: 0
   m_Name: Kuma
   m_TagString: Untagged
@@ -142,3 +143,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5742248296320008745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157202436534470641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26146e0488c49ce47a4042096374d316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMoveSpeed: 2
+  attackRange: 3
+  initialHealth: 10
+  defeatedEffectObjectPrefab: {fileID: 2214452928112465949, guid: 5cc4f20ecf983fa4398691c1b0dc2e58, type: 3}
