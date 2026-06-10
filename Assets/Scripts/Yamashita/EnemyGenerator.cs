@@ -28,12 +28,18 @@ public class EnemyGenerator : MonoBehaviour
             for (int i = 0; i < burstCount; i++)
             {
                 EnemyBase newEnemy = Instantiate(enemyPrefab);
-                Vector3 summonPosition = targetObject.transform.position;
-                float angle = UnityEngine.Random.Range(0.0f, 2.0f * Mathf.PI);
-                summonPosition += new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * distance;
-                newEnemy.OnSummon(summonPosition);
+
+                newEnemy.OnSummon(CalcSummonPosition());
             }
             generationWaitTime = generationInterval;
         }
+    }
+
+    public Vector3 CalcSummonPosition()
+    {
+        Vector3 summonPosition = targetObject.transform.position;
+        float angle = UnityEngine.Random.Range(0.0f, 2.0f * Mathf.PI);
+        summonPosition += new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * distance;
+        return summonPosition;
     }
 }

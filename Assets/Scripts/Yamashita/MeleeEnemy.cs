@@ -35,9 +35,10 @@ public class MeleeEnemy : EnemyBase
             animator.Play("Attack");
             return;
         }
-        Vector3 move = targetObject.transform.position - this.transform.position;
+        Vector2 move = targetObject.transform.position - this.transform.position;
         move = move.normalized * baseMoveSpeed * Time.deltaTime;
-        this.transform.position += move;
+        this.transform.position += (Vector3)move;
+        AdjustLayer();
         if(move.x < 0.0f)
         {
             this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
@@ -72,10 +73,15 @@ public class MeleeEnemy : EnemyBase
         }
     }
 
-
-
     public void OnAttack()
     {
         //targetObject.OnDamaged(attackPower);
+    }
+
+    private void AdjustLayer()
+    {
+        Vector3 prevPosition = this.transform.position;
+        prevPosition.z = prevPosition.y;
+        this.transform.position = prevPosition;
     }
 }
