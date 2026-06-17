@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterTag: Monster
-  skillCollider: {fileID: 0}
+  skillCollider: {fileID: 651441462}
 --- !u!50 &307639939
 Rigidbody2D:
   serializedVersion: 5

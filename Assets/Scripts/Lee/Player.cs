@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private const float maxSkillTime = 30.0f; // スキル活性化
     private float skillTimer = 0.0f;
     private bool canUseSkill = false;
+
     private const float skillColliderLifeTime = 1.0f; // コライダーActive調整
     private float skillColliderTimer = 0.0f;
 
