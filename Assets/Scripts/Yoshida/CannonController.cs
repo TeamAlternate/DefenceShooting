@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class CannonController : MonoBehaviour
 {
-    [SerializeField] private BulletManager bulletManagerPrefab;
+    [SerializeField] private AmmoManager ammoManagerPrefab;
     [SerializeField] private KeyCode attackKey;
+    [SerializeField] private KeyCode reloadKey;
+    [SerializeField] private int reloadAmmo = 20;
 
     private Transform childTransform;
-    private BulletManager bulletManagerGameObject;
+    private AmmoManager ammoManagerGameObject;
+    private bool canReload = false;
     
     private void Awake()
     {
         childTransform = transform.GetChild(0).GetComponent<Transform>();
-        bulletManagerGameObject = Instantiate(bulletManagerPrefab);
+        ammoManagerGameObject = Instantiate(ammoManagerPrefab);
     }
 
     void Update()
@@ -21,9 +24,15 @@ public class CannonController : MonoBehaviour
         {
             Attack();
         }
+
+        bool isReloadInput = Input.GetKeyDown(reloadKey);
+        if(isReloadInput)
+        {
+            ReloadAmmo();
+        }
     }
 
-    void Attack()
+    private void Attack()
     {
         bool isNull = childTransform == null;
 
@@ -32,7 +41,15 @@ public class CannonController : MonoBehaviour
             Vector3 pos = childTransform.localPosition;
             Vector3 moveVector = new Vector3(pos.x, pos.y);
 
-            bulletManagerGameObject.GenerateBullet(pos, moveVector);
+            canReload = !ammoManagerGameObject.GenerateBullet(pos, moveVector);
+        }
+    }
+
+    private void ReloadAmmo()
+    {
+        if(canReload)
+        {
+            ammoManagerGameObject.ReloadAmmo(reloadAmmo);
         }
     }
 }
