@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Debug
+namespace _Debug
 {
 
 
