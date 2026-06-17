@@ -47,7 +47,7 @@ void GetSurfaceNormal_float(texture2D atlas, float textureWidth, float textureHe
 	if (raisedBevel) h = 1 - abs(h * 2.0 - 1.0);
 	h = lerp(h, sin(h * 3.141592 / 2.0), float4(_BevelRoundness, _BevelRoundness, _BevelRoundness, _BevelRoundness));
 	h = min(h, 1.0 - float4(_BevelClamp, _BevelClamp, _BevelClamp, _BevelClamp));
-	h *= _BevelAmount * bevelWidth * _GradientScale * -2.0;
+	h *= _BevelAmmount * bevelWidth * _GradientScale * -2.0;
 
 	float3 va = normalize(float3(-1.0, 0.0, h.y - h.x));
 	float3 vb = normalize(float3(0.0, 1.0, h.w - h.z));
