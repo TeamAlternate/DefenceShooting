@@ -41,8 +41,6 @@ public class BarrierScript : MonoBehaviour
 
     private void RotateTransform(float degree)
     {
-        Quaternion rotation = childTransform.localRotation;
-
         Vector3 newRotation = Vector3.zero;
         newRotation.z = degree + SPRITE_ANGLE;
 
