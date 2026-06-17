@@ -16,6 +16,7 @@ public class MeleeEnemy : EnemyBase
     private GameObject targetObject;
 
     private int currentHealth;
+    private float attackWaitTime;
 
     private void Awake()
     {
@@ -23,8 +24,9 @@ public class MeleeEnemy : EnemyBase
         targetObject = GameObject.FindWithTag("Player");
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (targetObject == null)
         {
             return;
@@ -32,14 +34,23 @@ public class MeleeEnemy : EnemyBase
 
         if (Vector2.Distance(this.transform.position, targetObject.transform.position) < attackRange)
         {
-            animator.Play("Attack");
+            attackWaitTime -= Time.deltaTime;
+            if (attackWaitTime <= 0.0f)
+            {
+                animator.Play("Attack");
+                attackWaitTime = attackInterval;
+            }
             return;
         }
         Vector2 move = targetObject.transform.position - this.transform.position;
         move = move.normalized * baseMoveSpeed * Time.deltaTime;
+        if (HasDelay())
+        {
+            move *= delayMultiplier;
+        }
         this.transform.position += (Vector3)move;
         AdjustLayer();
-        if(move.x < 0.0f)
+        if (move.x < 0.0f)
         {
             this.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         }
@@ -84,4 +95,6 @@ public class MeleeEnemy : EnemyBase
         prevPosition.z = prevPosition.y;
         this.transform.position = prevPosition;
     }
+
+
 }
