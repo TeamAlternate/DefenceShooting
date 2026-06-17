@@ -4,47 +4,59 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Transform childTransform;
-    [SerializeField] private GameObject shotPrefab;
-    [SerializeField] private float angle;
-    [SerializeField] private float range;
+    [SerializeField] private string monsterTag;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    private float blinkSpeed = 2f;
+    private bool wasInvincible = false;
 
     private void Awake()
     {
-        // 初期化
-        childTransform = transform.GetChild(0).GetComponent<Transform>();
-        angle = 0.0f;
-        range = 3.0f;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     private void Update()
     {
-        CalculateAngle();
-        Attack();
+        BlinkMode();
     }
 
-    // barrierとPlayerの角度を計算します。
-    private void CalculateAngle()
+    private void BlinkMode()
     {
-        Vector2 v2 = transform.localPosition - childTransform.localPosition;
-        angle = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg;
-        Debug.Log(angle);
+        if (PlayerManager.instance.IsInvincible)
+        {
+            float alpha = Mathf.PingPong(Time.time * blinkSpeed, 1f);
+            spriteRenderer.color = new Color(
+                originalColor.r,
+                originalColor.g,
+                originalColor.b,
+                alpha
+            );
+
+            wasInvincible = true;
+        }
+        else
+        {
+            if (wasInvincible)
+            {
+                spriteRenderer.color = originalColor;
+                wasInvincible = false;
+            }
+        }
     }
 
-    private void Attack()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!shotPrefab)
+        if (collision.gameObject.tag == monsterTag)
         {
-            Debug.Log("Shot Prefabが無いです");
-            return;
-        }
-
-        // キーを押したらShot生成
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-
-           Instantiate(shotPrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, angle));
+            //Debug.Log("Monster Attacked");
+            PlayerManager.instance.DecreaseCurrentHP(10);
+            PlayerManager.instance.ChangeInvencible(true);
         }
     }
+
+
 
 }

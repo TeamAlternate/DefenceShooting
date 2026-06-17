@@ -1,12 +1,24 @@
+using System;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    int hp;
+    [SerializeField] private int maxHp = 100;
+    [SerializeField] private int currentHp;
+    private bool isDeath = false;
+
+    private bool isInvincible = false; // –³“G
+    public bool IsInvincible => isInvincible;
+
+    private const float maxInvicibleTime = 2.0f;
+    private float currentInvicibleTime = 0.0f;
+
+    public event Action<float, float> OnHPChanged;
 
     // Single Tone
     public static PlayerManager instance { get; private set; }
 
+    #region Unity Method
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -17,7 +29,62 @@ public class PlayerManager : MonoBehaviour
         instance = this;
     }
 
-    public int HP { get; set; }
+    private void Start()
+    {
+        currentHp = maxHp;
+    }
+
+    private void Update()
+    {
+        CalculateInvicibleTime();
+    }
+    #endregion
+
+    #region Setter
+    public void DecreaseCurrentHP(int value)
+    {
+        if (isInvincible)
+        {
+            return;
+        }
+
+        currentInvicibleTime = 0.0f;
+
+        currentHp -= value;
+        if (currentHp < 0)
+        {
+            currentHp = 0;
+            isDeath = true;
+        }
+
+        Debug.Log("PlayerHP:" + currentHp);
+    }
+
+    public void ChangeInvencible(bool value)
+    {
+        this.isInvincible = value;
+    }
+
+    #endregion
+
+    #region Calculator
+    private void CalculateInvicibleTime()
+    {
+        if (!isInvincible)
+        {
+            return;
+        }
+
+        currentInvicibleTime += Time.deltaTime;
+
+        if (currentInvicibleTime>maxInvicibleTime)
+        {
+            isInvincible = false;
+            currentInvicibleTime = 0.0f;
+        }
+    }
+
+    #endregion
 
 
 }
