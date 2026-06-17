@@ -24,7 +24,5 @@ public class AmmoManager : MonoBehaviour
     public void ReloadAmmo(int ammo)
     {
         remainingAmmo += ammo;
-
-        Debug.Log("Reloaded");
     }
 }
