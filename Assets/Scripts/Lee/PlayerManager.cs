@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UserInterfaces;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerManager : MonoBehaviour
 
     private const float maxInvicibleTime = 2.0f;
     private float currentInvicibleTime = 0.0f;
+
+    public GameObject HealthBarObj;
+    HealthBar healthBar;
 
     public event Action<float, float> OnHPChanged;
 
@@ -32,6 +36,8 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         currentHp = maxHp;
+        healthBar = HealthBarObj.GetComponent<HealthBar>();
+        healthBar.Initialize(currentHp, maxHp);
     }
 
     private void Update()
@@ -56,6 +62,8 @@ public class PlayerManager : MonoBehaviour
             currentHp = 0;
             isDeath = true;
         }
+
+        healthBar.UpdateHealth(currentHp);
 
         Debug.Log("PlayerHP:" + currentHp);
     }
