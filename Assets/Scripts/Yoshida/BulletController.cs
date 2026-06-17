@@ -3,6 +3,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     [SerializeField] private float rotateSpeed = 25.0f;
+    [SerializeField] private int damage = 100;
     private float speed = 0.0f;
     private Vector3 moveVector = Vector3.zero;
 
@@ -15,10 +16,10 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveBullet();
+        MoveAmmo();
     }
 
-    private void MoveBullet()
+    private void MoveAmmo()
     {
         Vector3 newPosition = this.transform.position;
         newPosition += moveVector * speed * Time.deltaTime;
@@ -41,7 +42,7 @@ public class BulletController : MonoBehaviour
         EnemyBase enemy = collision.GetComponent<EnemyBase>();
         if(enemy)
         {
-
+            enemy.OnDamaged(damage);
         }
     }
 

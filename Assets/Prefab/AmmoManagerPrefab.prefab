@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5426136843897273299}
   - component: {fileID: 5209085018101086644}
   m_Layer: 0
-  m_Name: BulletManagerPrefab
+  m_Name: AmmoManagerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
