@@ -47,6 +47,9 @@ public class CannonController : MonoBehaviour
 
     private void ReloadAmmo()
     {
-        ammoManagerGameObject.ReloadAmmo(reloadAmmo);
+        if(canReload)
+        {
+            ammoManagerGameObject.ReloadAmmo(reloadAmmo);
+        }
     }
 }
