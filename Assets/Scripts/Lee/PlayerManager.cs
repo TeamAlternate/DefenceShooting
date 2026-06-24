@@ -1,3 +1,4 @@
+using Scenes;
 using System;
 using UnityEngine;
 using UserInterfaces;
@@ -104,6 +105,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         isDeath = true;
+        MainGameManager.GameOver();
     }
 
     #endregion
