@@ -38,5 +38,11 @@ namespace Scenes
             score += addScore;
             current.scoreDisplay.UpdateScore(score);
         }
+
+        public static void GameOver()
+        {
+            EndingManager.SendScore(score);
+            current.LoadNextScene();
+        }
     }
 }
