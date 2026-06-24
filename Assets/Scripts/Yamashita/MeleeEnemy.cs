@@ -92,7 +92,7 @@ public class MeleeEnemy : EnemyBase
 
     public void OnDefeated()
     {
-
+        Scenes.MainGameManager.EarnScore(100);
         GameObject newEffect = Instantiate(defeatedEffectObjectPrefab);
         newEffect.transform.position = this.transform.position;
         Destroy(this.gameObject);

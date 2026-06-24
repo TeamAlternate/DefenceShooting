@@ -18,6 +18,7 @@ namespace UserInterfaces
         {
             currentScore = 0;
             targetScore = 0;
+            UpdateText();
             
         }
 
