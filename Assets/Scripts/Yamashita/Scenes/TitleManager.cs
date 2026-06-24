@@ -17,8 +17,14 @@ namespace Scenes
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                SceneManager.LoadScene(nextSceneName);
+                LoadNextScene();
             }
+        }
+
+        public void LoadNextScene()
+        {
+            SceneManager.LoadScene(nextSceneName);
+
         }
     }
 
