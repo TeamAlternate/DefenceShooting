@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -78,15 +79,21 @@ public class MeleeEnemy : EnemyBase
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            GameObject newEffect = Instantiate(defeatedEffectObjectPrefab);
-            newEffect.transform.position = this.transform.position;
-            Destroy(this.gameObject);
+            OnDefeated();
         }
     }
 
     public void OnAttack()
     {
         //targetObject.OnDamaged(attackPower);
+    }
+
+    public void OnDefeated()
+    {
+
+        GameObject newEffect = Instantiate(defeatedEffectObjectPrefab);
+        newEffect.transform.position = this.transform.position;
+        Destroy(this.gameObject);
     }
 
     private void AdjustLayer()
