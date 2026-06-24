@@ -8,6 +8,7 @@ namespace UserInterfaces
     public class SkillChargeDisplay : MonoBehaviour
     {
         [SerializeField] private Image cooldownGauge;
+        [SerializeField] private Image readyToUseImage;
 
         private float cooldownTime;
         private float currentCooldown;
@@ -27,13 +28,14 @@ namespace UserInterfaces
 
         public void StartCooldown(float cooldownTime)
         {
+            readyToUseImage.enabled = false;
             this.cooldownTime = cooldownTime;
             currentCooldown = cooldownTime;
         }
 
         public void ReadyToUse()
         {
-
+            readyToUseImage.enabled = true;
         }
     }
 }
