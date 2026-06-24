@@ -85,7 +85,9 @@ public class MeleeEnemy : EnemyBase
 
     public void OnAttack()
     {
-        //targetObject.OnDamaged(attackPower);
+        //Debug.Log(attackPower);
+        PlayerManager.instance.DecreaseCurrentHP(attackPower);
+        PlayerManager.instance.ChangeInvencible(true);
     }
 
     public void OnDefeated()

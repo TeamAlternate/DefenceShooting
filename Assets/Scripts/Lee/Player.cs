@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UserInterfaces;
 
 public class Player : MonoBehaviour
 {
@@ -15,18 +16,21 @@ public class Player : MonoBehaviour
 
     // Skill
     [SerializeField] private GameObject skillCollider;
-    private const float maxSkillTime = 1.0f; // スキル活性化
+    private const float maxSkillTime = 10.0f; // スキル活性化
     private float skillTimer = 0.0f;
     private bool canUseSkill = false;
 
     private const float skillColliderLifeTime = 1.0f; // コライダーActive調整
     private float skillColliderTimer = 0.0f;
 
+    [SerializeField] private GameObject skillCooldown;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         skillCollider.SetActive(false);
+        skillCooldown.GetComponent<SkillChargeDisplay>().StartCooldown(maxSkillTime);
     }
 
     private void Update()
@@ -64,12 +68,12 @@ public class Player : MonoBehaviour
     {
         if(!canUseSkill)
         {
-            //Debug.Log("クールタイムが残っています");
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            skillCooldown.GetComponent<SkillChargeDisplay>().AfterUsing();
             Camera.main.GetComponent<CameraShaker>().TriggerShake();
             skillCollider.SetActive(true);
             canUseSkill = false;
@@ -87,6 +91,7 @@ public class Player : MonoBehaviour
         if (skillTimer > maxSkillTime)
         {
             canUseSkill = true;
+            skillCooldown.GetComponent<SkillChargeDisplay>().ReadyToUse();
         }
 
         if (skillColliderTimer > skillColliderLifeTime)
@@ -98,11 +103,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == monsterTag)
-        {
-            //Debug.Log("Monster Attacked");
-            PlayerManager.instance.DecreaseCurrentHP(10);
-            PlayerManager.instance.ChangeInvencible(true);
-        }
+        //if (collision.gameObject.tag == monsterTag)
+        //{
+        //    //Debug.Log("Monster Attacked");
+        //    PlayerManager.instance.DecreaseCurrentHP(10);
+        //    PlayerManager.instance.ChangeInvencible(true);
+        //}
     }
 }

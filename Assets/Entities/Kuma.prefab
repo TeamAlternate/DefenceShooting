@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 7905625548975287850}
   m_Layer: 0
   m_Name: Kuma
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMoveSpeed: 2
-  attackPower: 0
+  attackPower: 10
   attackRange: 3
   attackInterval: 0.8
   initialHealth: 10
