@@ -6,10 +6,12 @@ public class CannonController : MonoBehaviour
     [SerializeField] private KeyCode attackKey;
     [SerializeField] private KeyCode reloadKey;
     [SerializeField] private int reloadAmmo = 20;
+    [SerializeField] private int needToReload = 30; 
 
     private Transform childTransform;
     private AmmoManager ammoManagerGameObject;
     private bool canReload = false;
+    private int buttonDownCount = 0;
     
     private void Awake()
     {
@@ -25,10 +27,17 @@ public class CannonController : MonoBehaviour
             Attack();
         }
 
-        bool isReloadInput = Input.GetKeyDown(reloadKey);
+        bool isReloadInput = Input.GetKeyDown(reloadKey) && canReload;
         if(isReloadInput)
         {
-            ReloadAmmo();
+            buttonDownCount++;
+
+            bool canReload = buttonDownCount >= needToReload;
+            if( canReload )
+            {
+                ReloadAmmo();
+                buttonDownCount = 0;
+            }
         }
     }
 
@@ -47,9 +56,6 @@ public class CannonController : MonoBehaviour
 
     private void ReloadAmmo()
     {
-        if(canReload)
-        {
-            ammoManagerGameObject.ReloadAmmo(reloadAmmo);
-        }
+        ammoManagerGameObject.ReloadAmmo(reloadAmmo);
     }
 }

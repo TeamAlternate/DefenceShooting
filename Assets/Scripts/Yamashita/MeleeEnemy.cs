@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -78,9 +79,7 @@ public class MeleeEnemy : EnemyBase
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            GameObject newEffect = Instantiate(defeatedEffectObjectPrefab);
-            newEffect.transform.position = this.transform.position;
-            Destroy(this.gameObject);
+            OnDefeated();
         }
     }
 
@@ -89,6 +88,14 @@ public class MeleeEnemy : EnemyBase
         //Debug.Log(attackPower);
         PlayerManager.instance.DecreaseCurrentHP(attackPower);
         PlayerManager.instance.ChangeInvencible(true);
+    }
+
+    public void OnDefeated()
+    {
+
+        GameObject newEffect = Instantiate(defeatedEffectObjectPrefab);
+        newEffect.transform.position = this.transform.position;
+        Destroy(this.gameObject);
     }
 
     private void AdjustLayer()
