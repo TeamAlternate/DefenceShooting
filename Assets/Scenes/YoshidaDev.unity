@@ -426,6 +426,7 @@ MonoBehaviour:
   attackKey: 32
   reloadKey: 114
   reloadAmmo: 20
+  needToReload: 30
 --- !u!212 &1804078671
 SpriteRenderer:
   m_ObjectHideFlags: 0

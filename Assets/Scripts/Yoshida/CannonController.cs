@@ -6,7 +6,8 @@ public class CannonController : MonoBehaviour
     [SerializeField] private KeyCode attackKey;
     [SerializeField] private KeyCode reloadKey;
     [SerializeField] private int reloadAmmo = 20;
-    [SerializeField] private int needToReload = 30; 
+    [SerializeField] private int needToReload = 30;
+    [SerializeField] private UserInterfaces.ReloadProgressDisplay reloadProgressDisplayPrefab;
 
     private Transform childTransform;
     private AmmoManager ammoManagerGameObject;
@@ -31,11 +32,15 @@ public class CannonController : MonoBehaviour
         if(isReloadInput)
         {
             buttonDownCount++;
+            
+            float percent = (float)buttonDownCount / (float)needToReload;
+            reloadProgressDisplayPrefab.UpdateProgress(percent);
 
             bool canReload = buttonDownCount >= needToReload;
             if( canReload )
             {
                 ReloadAmmo();
+                reloadProgressDisplayPrefab.DoneReload();
                 buttonDownCount = 0;
             }
         }
@@ -51,6 +56,10 @@ public class CannonController : MonoBehaviour
             Vector3 moveVector = new Vector3(pos.x, pos.y);
 
             canReload = !ammoManagerGameObject.GenerateBullet(pos, moveVector);
+            if(canReload)
+            {
+                reloadProgressDisplayPrefab.StartReload(); 
+            }
         }
     }
 
