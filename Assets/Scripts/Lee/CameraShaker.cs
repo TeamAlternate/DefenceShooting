@@ -4,8 +4,8 @@ public class CameraShaker : MonoBehaviour
 {
     private Transform transform;
     private float shakeDuration = 0f;
-    private float shakeMagnitude = 0.7f;
-    private float dampingSpeed = 1.0f;
+    private float shakeMagnitude = 0.3f;
+    private float dampingSpeed = 2.0f;
     Vector3 initialPosition;
 
     void Awake()
@@ -36,6 +36,7 @@ public class CameraShaker : MonoBehaviour
     }
     public void TriggerShake()
     {
+        //Debug.Log("CameraTest");
         shakeDuration = 2.0f;
     }
 }

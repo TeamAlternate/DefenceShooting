@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     // Skill
     [SerializeField] private GameObject skillCollider;
-    private const float maxSkillTime = 30.0f; // スキル活性化
+    private const float maxSkillTime = 1.0f; // スキル活性化
     private float skillTimer = 0.0f;
     private bool canUseSkill = false;
 
@@ -64,12 +64,13 @@ public class Player : MonoBehaviour
     {
         if(!canUseSkill)
         {
-            Debug.Log("クールタイムが残っています");
+            //Debug.Log("クールタイムが残っています");
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            Camera.main.GetComponent<CameraShaker>().TriggerShake();
             skillCollider.SetActive(true);
             canUseSkill = false;
             skillTimer = 0.0f;
