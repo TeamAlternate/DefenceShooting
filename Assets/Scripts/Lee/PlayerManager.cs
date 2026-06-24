@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject HealthBarObj;
     HealthBar healthBar;
 
-    public event Action<float, float> OnHPChanged;
+    //public event Action<float, float> OnHPChanged;
 
     // Single Tone
     public static PlayerManager instance { get; private set; }
@@ -43,6 +43,7 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         CalculateInvicibleTime();
+        SetOnDeath();
     }
     #endregion
 
@@ -94,5 +95,17 @@ public class PlayerManager : MonoBehaviour
 
     #endregion
 
+    #region etc
+    private void SetOnDeath()
+    {
+        if(currentHp >=1)
+        {
+            return;
+        }
+
+        isDeath = true;
+    }
+
+    #endregion
 
 }
