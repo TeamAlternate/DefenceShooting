@@ -9,10 +9,13 @@ namespace Scenes
         private static int recentScore;
 
         [SerializeField] private string nextSceneName;
+        [SerializeField] private UserInterfaces.ScoreDisplay scoreDisplay;
+
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            scoreDisplay.UpdateScore(recentScore);
         }
 
         // Update is called once per frame
