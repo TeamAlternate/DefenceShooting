@@ -37,5 +37,11 @@ namespace UserInterfaces
         {
             readyToUseImage.enabled = true;
         }
+
+        public void AfterUsing()
+        {
+            StartCooldown(cooldownTime);
+            readyToUseImage.enabled = false;
+        }
     }
 }
