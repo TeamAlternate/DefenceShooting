@@ -32,6 +32,7 @@ public class EnemyGenerator : MonoBehaviour
                 newEnemy.OnSummon(CalcSummonPosition());
             }
             generationWaitTime = generationInterval;
+            generationInterval *= 0.99f;
         }
     }
 
