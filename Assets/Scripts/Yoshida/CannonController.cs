@@ -19,6 +19,7 @@ public class CannonController : MonoBehaviour
     {
         childTransform = transform.GetChild(0).GetComponent<Transform>();
         ammoManagerGameObject = Instantiate(ammoManagerPrefab);
+        ammoManagerGameObject.ReloadAmmo(reloadAmmo);
     }
 
     void Update()
