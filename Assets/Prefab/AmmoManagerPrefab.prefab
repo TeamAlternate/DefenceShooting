@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   bulletControllerPrefab: {fileID: 8410283578168772349, guid: 35cce3eada5351e4395086e9892d6e20, type: 3}
+  ammoRemainingsDisplayPrefab: {fileID: 0}
