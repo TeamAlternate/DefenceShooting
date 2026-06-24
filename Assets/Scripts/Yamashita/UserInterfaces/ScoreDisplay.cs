@@ -14,7 +14,7 @@ namespace UserInterfaces
         private int targetScore;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        void Awake()
         {
             currentScore = 0;
             targetScore = 0;
