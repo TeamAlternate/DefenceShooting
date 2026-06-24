@@ -103,11 +103,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == monsterTag)
-        {
-            //Debug.Log("Monster Attacked");
-            PlayerManager.instance.DecreaseCurrentHP(10);
-            PlayerManager.instance.ChangeInvencible(true);
-        }
+        //if (collision.gameObject.tag == monsterTag)
+        //{
+        //    //Debug.Log("Monster Attacked");
+        //    PlayerManager.instance.DecreaseCurrentHP(10);
+        //    PlayerManager.instance.ChangeInvencible(true);
+        //}
     }
 }
