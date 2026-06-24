@@ -29,7 +29,7 @@ namespace UserInterfaces
             {
                 return;
             }
-            currentScore += Mathf.Max((int)((targetScore - currentScore) * Mathf.Exp(-increaseRate * Time.deltaTime)), +1);
+            currentScore += Mathf.Min((targetScore - currentScore), +10);
             UpdateText();
         }
 
