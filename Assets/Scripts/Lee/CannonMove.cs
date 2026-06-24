@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // 指定秒数でプレイヤーの周りを回る
-public class BarrierScript : MonoBehaviour
+public class CannonMove : MonoBehaviour
 {
     private const float LAP_ANGLE = 360.0f;
     private const float SPRITE_ANGLE = -90.0f;
