@@ -980,8 +980,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64f3734dcaf9c846be09889ca915998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1.5
-  lapTime: 2
+  radius: 1.75
+  lapTime: 1.5
 --- !u!212 &833467261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1070,8 +1070,8 @@ MonoBehaviour:
   ammoManagerPrefab: {fileID: 5209085018101086644, guid: 9a10f7b91e42c0f4c841a591f0688a4b, type: 3}
   attackKey: 32
   reloadKey: 32
-  reloadAmmo: 20
-  needToReload: 30
+  reloadAmmo: 30
+  needToReload: 20
   reloadProgressDisplayPrefab: {fileID: 476349754}
 --- !u!224 &889968272 stripped
 RectTransform:
